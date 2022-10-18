@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moonshot-output
+  labels:
+    app: moonshot-output
+spec:
+  replicas: {{ .Values.outputModule.replica }}
+  selector:
+    matchLabels:
+      app: moonshot-output
+  template:
+    metadata:
+      labels:
+        app: moonshot-output
+    spec:
+      containers:
+      - name: moonshot-output
+        image: {{ .Values.outputModule.image }}
+        env:
+        - name: MQTT_SERVER
+          value: {{ .Values.outputModule.env.MqttServer }}
+        - name: MQTT_PORT
+          value: {{ .Values.outputModule.env.MqttPort }}
+        volumeMounts:
+        - mountPath: /etc/daytona
+          name: daytona-config
+        - mountPath: /etc/daytona/secrets
+          name: daytona-secrets
+      volumes:
+      - name: daytona-config
+        configMap:
+          name: output-config-configmap
+      - name: daytona-secrets
+        secret:
+          secretName: output-connection-string-secret

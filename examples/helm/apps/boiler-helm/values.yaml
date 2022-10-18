@@ -1,0 +1,44 @@
+inputModule:
+  replica: 1
+  image: scr.io/moonshot-samples-input:1.1
+  env:
+    MqttServer: mosquitto.mosquitto.svc.cluster.local
+    MqttPort: 1883
+  tagsToSubscribe:
+    - NONE
+  config:
+    host:
+    environment:
+    application: moonshot-sample 
+    version: "1.1"
+    module: input
+
+processModule:
+  replica: 1
+  image: scr.io/moonshot-samples-process:1.1
+  env:
+    MqttServer: mosquitto.mosquitto.svc.cluster.local
+    MqttPort: 1883
+  config:
+    host:
+    environment:
+    application: moonshot-sample 
+    version: "1.1"
+    module: input
+    inputTopics:
+      - "moonshot-sample/1.1/input"
+
+outputModule:
+  replica: 1
+  image: scr.io/moonshot-samples-output:1.1
+  env:
+    MqttServer: mosquitto.mosquitto.svc.cluster.local
+    MqttPort: 1883
+  config:
+    host:
+    environment:
+    application: moonshot-sample 
+    version: "1.1"
+    module: output
+    inputTopics:
+      - "moonshot-sample/1.1/process"

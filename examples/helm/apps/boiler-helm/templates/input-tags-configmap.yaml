@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: input-tags-configmap
+data:
+  tags-configuration.yaml: |
+    tags:
+{{ toYaml .Values.inputModule.tagsToSubscribe | indent 4 }}
+

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: output-config-configmap
+data:
+  config: |
+    {
+      "host": "{{ .Values.outputModule.config.host }}", 
+      "environment": "{{ .Values.outputModule.config.environment }}",
+      "application": "{{ .Values.outputModule.config.application }}",
+      "version": "{{ .Values.outputModule.config.version }}",
+      "module": "{{ .Values.outputModule.config.module }}"
+      "inputTopics": {{ .Values.outputModule.config.inputTopics }}
+    }

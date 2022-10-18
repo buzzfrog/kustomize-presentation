@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moonshot-process
+  labels:
+    app: moonshot-process
+spec:
+  replicas: {{ .Values.processModule.replica }}
+  selector:
+    matchLabels:
+      app: moonshot-process
+  template:
+    metadata:
+      labels:
+        app: moonshot-process
+    spec:
+      containers:
+      - name: moonshot-process
+        image: {{ .Values.processModule.image }}
+        env:
+        - name: MQTT_SERVER
+          value: {{ .Values.processModule.env.MqttServer }}
+        - name: MQTT_PORT
+          value: {{ .Values.processModule.env.MqttPort }}
+        volumeMounts:
+        - mountPath: /etc/daytona
+          name: daytona-config
+      volumes:
+      - name: daytona-config
+        configMap:
+          name: process-config-configmap

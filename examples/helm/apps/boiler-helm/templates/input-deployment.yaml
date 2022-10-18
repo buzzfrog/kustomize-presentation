@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moonshot-input
+  labels:
+    app: moonshot-input
+spec:
+  replicas: {{ .Values.inputModule.replica }}
+  selector:
+    matchLabels:
+      app: moonshot-input
+  template:
+    metadata:
+      labels:
+        app: moonshot-input
+    spec:
+      containers:
+      - name: moonshot-input
+        image: {{ .Values.inputModule.image }}
+        env:
+        - name: MQTT_SERVER
+          value: {{ .Values.inputModule.env.MqttServer }}
+        - name: MQTT_PORT
+          value: {{ .Values.inputModule.env.MqttPort }}
+        volumeMounts:
+        - mountPath: /etc/daytona
+          name: daytona-config
+        - mountPath: /etc/daytona/files
+          name: daytona-files
+      volumes:
+      - name: daytona-config
+        configMap:
+          name: input-config-configmap
+      - name: daytona-files
+        configMap:
+          name: input-tags-configmap

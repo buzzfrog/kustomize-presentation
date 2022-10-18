@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: process-config-configmap
+data:
+  config: |
+    {
+      "host": "{{ .Values.processModule.config.host }}", 
+      "environment": "{{ .Values.processModule.config.environment }}",
+      "application": "{{ .Values.processModule.config.application }}",
+      "version": "{{ .Values.processModule.config.version }}",
+      "module": "{{ .Values.processModule.config.module }}"
+      "inputTopics": {{ .Values.processModule.config.inputTopics }}
+    }
