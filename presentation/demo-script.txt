@@ -54,3 +54,22 @@ images:
 ---
 
 DEMO 3
+
+
+DEMO - FLUX-HELLO-WORLD
+- create cluster
+- flux install
+- create git source
+---
+flux create source git contoso \
+    --url="https://github.com/buzzfrog/kustomize-presentation" \
+    --branch=main
+---
+- create kustomization
+---
+flux create kustomization apps \
+    --path=./examples/flux-hello-world \
+    --source=contoso \
+    --prune=true \
+    --interval=1m
+---
