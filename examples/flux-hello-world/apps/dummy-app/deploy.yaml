@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dummy-app-dep
-  namespace: default
   labels:
     app: dummy-app
 spec:
