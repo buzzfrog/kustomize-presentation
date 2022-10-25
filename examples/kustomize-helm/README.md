@@ -1,5 +1,5 @@
 ```
-kustomize build --enable-helm ./cluster/helsinki/v1
+kustomize build --enable-helm ../../examples/kustomize-helm/cluster/helsinki/v1
 ```
 
 ## Helm support in Kustomize
