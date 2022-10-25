@@ -68,7 +68,7 @@ flux create source git contoso \
 - create kustomization
 ---
 flux create kustomization apps \
-    --path=./examples/flux-hello-world \
+    --path=./examples/flux-hello-world/clusters/stockholm \
     --source=contoso \
     --prune=true \
     --interval=1m
