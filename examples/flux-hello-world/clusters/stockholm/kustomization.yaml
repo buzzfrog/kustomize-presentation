@@ -6,6 +6,6 @@ resources:
   - namespace.yaml
   - ../../apps/dummy-app
 
-replicas:
-  - name: dummy-app-dep
-    count: 3
+# replicas:
+#   - name: dummy-app-dep
+#     count: 3
