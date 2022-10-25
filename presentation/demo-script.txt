@@ -1,0 +1,56 @@
+DEMO 1
+
+- create deploy1.yaml
+- create deploy2.yaml
+- create kustmization.yaml (kustomize create)
+- add
+    resources:
+    - deploy1.yaml
+    - deploy2.yaml
+
+- run kustomize build
+- show: https://kubectl.docs.kubernetes.io/references/kustomize/
+- add namespace: apps
+- add namePrefix: foo-
+- run kustomize build
+- add
+    replicas:
+    - name: app1-deployment
+    count: 5
+
+DEMO 2
+- create base folder and move deploy1, deploy2 and kustomization to that folder
+- create dev folder and copy kustomisation to that folder. clean it.
+- add
+    resources:
+    - ../base
+- run kustomize build ./dev
+- add
+    commonAnnotations:
+    dev: 'true'
+- run kustomize build ./dev
+- add file fruits.yaml
+                          - banana
+                          - apple
+                          - citrus
+- add to kustomization
+---
+configMapGenerator:
+  - name: fruits 
+    files:
+      - fruits=fruits.yaml
+    options:
+      disableNameSuffixHash: true
+  - name: environment
+    literals:
+      - BASE=foo
+     - DEV=bar
+---
+- add to kustomization
+---
+images:
+  - name: busybox
+    newTag: '1.34'
+---
+
+DEMO 3
