@@ -144,7 +144,8 @@ DEMO 4 - FLUX-HELLO-WORLD
 ---
 flux create source git contoso \
     --url="https://github.com/buzzfrog/kustomize-presentation" \
-    --branch=main
+    --branch=main \
+    --interval=1m
 ---
 - create kustomization
 ---

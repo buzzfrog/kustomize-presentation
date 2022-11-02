@@ -8,4 +8,4 @@ resources:
 
 replicas:
   - name: dummy-app-dep
-    count: 4
+    count: 2
