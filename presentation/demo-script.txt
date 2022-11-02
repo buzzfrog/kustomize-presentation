@@ -161,7 +161,7 @@ flux create kustomization apps \
 DEMO 5 - KUSTOMIZE-HELM-FLUX
 
 - kustomization
-flux create kustomization apps \
+flux create kustomization helmtest \
     --path=./examples/flux-kustomize-helm/clusters/cluster1 \
     --source=contoso \
     --prune=true \
