@@ -4,7 +4,6 @@ metadata:
   name: app1-helmrelease
 spec:
   releaseName: app1-v1
-  targetNamespace: app1-ns
   chart:
     spec:
       chart: ../../apps/app1/v1/chart 
