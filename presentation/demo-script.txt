@@ -13,21 +13,24 @@ resources:
 ----------
 
 - run kubectl apply -k .
-- add 
+- add NAMESPACE
 
 ----------
 namespace: apps
 ----------
 
 - Show website with builtin transformers
-- add
+  https://kubectl.docs.kubernetes.io/references/kustomize/builtins/
+
+- add NAMEPREFIX
 
 ----------
 namePrefix: foo-
 ----------
 
 - run kustomize build
-- add
+
+- add REPLICAS
 
 ----------
 replicas:
@@ -129,8 +132,12 @@ images:
 
 DEMO 3 - HELM
 
+- show example in examples/kustomize-helm
+- run
+kustomize build --enable-helm examples/kustomize-helm/cluster/helsinki/v1
+- Show that the helm chart is inflated, expanded, locally
 
-DEMO - FLUX-HELLO-WORLD
+DEMO 4 - FLUX-HELLO-WORLD
 - create cluster
 - flux install
 - create git source
@@ -147,3 +154,5 @@ flux create kustomization apps \
     --prune=true \
     --interval=1m
 ---
+
+- Update a value in examples/flux-hello-world/clusters/stockholm/kustomization.yaml
