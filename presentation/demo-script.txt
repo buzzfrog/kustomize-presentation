@@ -1,24 +1,98 @@
-DEMO 1
+DEMO 1 - KUSTOMIZE INTRO
 
-- create deploy1.yaml
-- create deploy2.yaml
-- create kustmization.yaml (kustomize create)
+- copy deploy1.yaml
+- copy deploy2.yaml
+- Show how to deploy with kubectl apply -f .
+- copy kustomization.yaml
 - add
-    resources:
-    - deploy1.yaml
-    - deploy2.yaml
+
+----------
+resources:
+- deploy1.yaml
+- deploy2.yaml
+----------
+
+- run kubectl apply -k .
+- add 
+
+----------
+namespace: apps
+----------
+
+- Show website with builtin transformers
+- add
+
+----------
+namePrefix: foo-
+----------
 
 - run kustomize build
-- show: https://kubectl.docs.kubernetes.io/references/kustomize/
-- add namespace: apps
-- add namePrefix: foo-
-- run kustomize build
 - add
-    replicas:
-    - name: app1-deployment
-    count: 5
 
-DEMO 2
+----------
+replicas:
+- name: app1-deployment
+  count: 5
+----------
+
+# CONFIGMAPGENERATOR #
+- add
+
+----------
+configMapGenerator:
+  - name: environment
+    literals:
+      - BASE=foo
+      - DEV=bar
+----------
+
+- create fruits.yaml
+
+----------
+- banana
+- apple
+- citrus
+----------
+
+- add
+
+----------
+configMapGenerator:
+  - name: fruits 
+    files:
+      - fruits=fruits.yaml
+    options:
+      disableNameSuffixHash: true
+  - name: environment
+    literals:
+      - BASE=foo
+      - DEV=bar
+----------
+
+# REPLACEMENTS #
+- copy configmap.yaml to demo-space
+
+- add to kustomization.yaml
+
+----------
+resources:
+  - deploy.yaml
+  - configmap.yaml
+
+replacements:
+- source:
+    kind: Configmap
+    name: active-user-id
+    fieldPath: data.userid
+  targets:
+  - select:
+      kind: Deployment
+      name: app1
+    fieldPaths:
+    - spec.template.spec.containers.[name=app1-busybox].env.[name=USER_ID].value
+----------
+
+DEMO 2 - OVERLAYS AND OTHER STUFF
 - create base folder and move deploy1, deploy2 and kustomization to that folder
 - create dev folder and copy kustomisation to that folder. clean it.
 - add
@@ -53,7 +127,7 @@ images:
     newTag: '1.34'
 ---
 
-DEMO 3
+DEMO 3 - HELM
 
 
 DEMO - FLUX-HELLO-WORLD

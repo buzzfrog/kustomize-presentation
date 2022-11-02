@@ -20,6 +20,9 @@ spec:
         command:
         - sleep
         - "99999"
+        env:
+          - name: USER_ID
+            value: USER_ID_VALUE
         resources:
           requests:
             cpu: "100m"
