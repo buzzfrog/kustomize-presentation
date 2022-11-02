@@ -159,3 +159,10 @@ flux create kustomization apps \
 - Update a value in examples/flux-hello-world/clusters/stockholm/kustomization.yaml
 
 DEMO 5 - KUSTOMIZE-HELM-FLUX
+
+- kustomization
+flux create kustomization apps \
+    --path=./examples/flux-kustomize-helm/clusters/cluster1 \
+    --source=contoso \
+    --prune=true \
+    --interval=1m
