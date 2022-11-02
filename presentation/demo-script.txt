@@ -157,3 +157,5 @@ flux create kustomization apps \
 ---
 
 - Update a value in examples/flux-hello-world/clusters/stockholm/kustomization.yaml
+
+DEMO 5 - KUSTOMIZE-HELM-FLUX
