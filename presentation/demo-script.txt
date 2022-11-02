@@ -4,8 +4,8 @@ DEMO 1 - KUSTOMIZE INTRO
 - copy deploy2.yaml
 - Show how to deploy with kubectl apply -f .
 - copy kustomization.yaml
-- add
 
+- add
 ----------
 resources:
 - deploy1.yaml
@@ -13,8 +13,8 @@ resources:
 ----------
 
 - run kubectl apply -k .
-- add NAMESPACE
 
+- add NAMESPACE
 ----------
 namespace: apps
 ----------
@@ -23,7 +23,6 @@ namespace: apps
   https://kubectl.docs.kubernetes.io/references/kustomize/builtins/
 
 - add NAMEPREFIX
-
 ----------
 namePrefix: foo-
 ----------
@@ -31,7 +30,6 @@ namePrefix: foo-
 - run kustomize build
 
 - add REPLICAS
-
 ----------
 replicas:
 - name: app1-deployment
@@ -39,8 +37,8 @@ replicas:
 ----------
 
 # CONFIGMAPGENERATOR #
-- add
 
+- add
 ----------
 configMapGenerator:
   - name: environment
@@ -50,7 +48,6 @@ configMapGenerator:
 ----------
 
 - create fruits.yaml
-
 ----------
 - banana
 - apple
@@ -58,7 +55,6 @@ configMapGenerator:
 ----------
 
 - add
-
 ----------
 configMapGenerator:
   - name: fruits 
@@ -72,11 +68,23 @@ configMapGenerator:
       - DEV=bar
 ----------
 
+# PATCHES #
+----------
+patchesJson6902:
+- target:
+    version: v1
+    kind: Deployment
+    name: app1
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/env/0/value
+      value: "donald-duck"
+----------
+
 # REPLACEMENTS #
 - copy configmap.yaml to demo-space
 
 - add to kustomization.yaml
-
 ----------
 resources:
   - deploy.yaml
@@ -98,32 +106,21 @@ replacements:
 DEMO 2 - OVERLAYS AND OTHER STUFF
 - create base folder and move deploy1, deploy2 and kustomization to that folder
 - create dev folder and copy kustomisation to that folder. clean it.
+
 - add
-    resources:
-    - ../base
+----------
+resources:
+  - ../base
+
+nameSuffix: -dev
+
+commonAnnotations:
+  dev: 'true'
+----------
+
 - run kustomize build ./dev
+
 - add
-    commonAnnotations:
-    dev: 'true'
-- run kustomize build ./dev
-- add file fruits.yaml
-                          - banana
-                          - apple
-                          - citrus
-- add to kustomization
----
-configMapGenerator:
-  - name: fruits 
-    files:
-      - fruits=fruits.yaml
-    options:
-      disableNameSuffixHash: true
-  - name: environment
-    literals:
-      - BASE=foo
-     - DEV=bar
----
-- add to kustomization
 ---
 images:
   - name: busybox
