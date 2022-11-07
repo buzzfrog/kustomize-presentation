@@ -163,3 +163,5 @@ flux create kustomization helmtest \
     --source=contoso \
     --prune=true \
     --interval=1m
+
+Total: ~36min
