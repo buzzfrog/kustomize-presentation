@@ -1,4 +1,4 @@
-DEMO 1 - KUSTOMIZE INTRO
+DEMO 1 - KUSTOMIZE INTRO (~17min)
 
 - copy deploy1.yaml
 - copy deploy2.yaml
@@ -103,7 +103,7 @@ replacements:
     - spec.template.spec.containers.[name=app1-busybox].env.[name=USER_ID].value
 ----------
 
-DEMO 2 - OVERLAYS AND OTHER STUFF
+DEMO 2 - OVERLAYS AND OTHER STUFF (~5min)
 - create base folder and move deploy1, deploy2 and kustomization to that folder
 - create dev folder and copy kustomisation to that folder. clean it.
 
@@ -127,14 +127,14 @@ images:
     newTag: '1.34'
 ---
 
-DEMO 3 - HELM
+DEMO 3 - HELM (~3min)
 
 - show example in examples/kustomize-helm
 - run
 kustomize build --enable-helm examples/kustomize-helm/cluster/helsinki/v1
 - Show that the helm chart is inflated, expanded, locally
 
-DEMO 4 - FLUX-HELLO-WORLD
+DEMO 4 - FLUX-HELLO-WORLD (~6min)
 - create cluster
 - flux install
 - create git source
@@ -155,7 +155,7 @@ flux create kustomization apps \
 
 - Update a value in examples/flux-hello-world/clusters/stockholm/kustomization.yaml
 
-DEMO 5 - KUSTOMIZE-HELM-FLUX
+DEMO 5 - KUSTOMIZE-HELM-FLUX (~5min)
 
 - kustomization
 flux create kustomization helmtest \
