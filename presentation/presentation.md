@@ -28,7 +28,12 @@
                      (  V  ) Dag König (  V  )
                      --m-m---------------m-m--
 
-```                                                            
+``` 
+> Note: <br/>
+> You can find everything I do here in this repository:
+>https://github.com/buzzfrog/kustomize-presentation
+
+
 ```
  ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄  ▄▄▄▄▄▄ 
 █       █       █       █  █  █ █      ██      █
