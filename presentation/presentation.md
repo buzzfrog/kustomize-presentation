@@ -94,10 +94,10 @@
 █ ██▄██ █       █ █   █ █   ██     ██  ▄   █ █   █ █   █       █ █ █   █
 █▄█   █▄█▄▄▄▄▄▄▄█ █▄▄▄█ █▄▄▄█ █▄▄▄█ █▄█ █▄▄█ █▄▄▄█ █▄▄▄█▄▄▄▄▄▄▄█▄█  █▄▄█
 ```
-* Kubernetes on the Edge in a Manufacturing setting
+* Kubernetes on the Edge (stretch: in a disconnected scenario.)
 * GitOps / Flux
 * Repository structure that manage workloads and clusters (and more)
-* This tool can help you in all kubernetes engagements where you need to install and manage more 
+* This tool can help you in all kubernetes engagements where you need to deploy and manage more 
   complex workloads.
   * It can be how to separate Dev/Test/Prod environment
   * When you want to use Azure Arc Flux extension
